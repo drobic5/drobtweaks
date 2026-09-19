@@ -22,7 +22,7 @@ canvas#embers{position:fixed;inset:0;z-index:0;pointer-events:none}
 nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:linear-gradient(180deg,rgba(10,9,15,.92),rgba(10,9,15,.55));border-bottom:1px solid var(--line)}
 nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,#ff2a4a,#ff7a2a,#ffd23a,#28e07a,#3aa0ff,#a06aff,#ff4aa0);background-size:220% 100%;animation:hue 9s linear infinite;opacity:.9}
 @keyframes hue{to{background-position:220% 0}}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav-in{display:flex;align-items:center;justify-content:center;height:66px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand .mark{width:38px;height:38px;border-radius:11px;position:relative;background:linear-gradient(145deg,#1a0708,#0a0203);border:1px solid #3a0d0f;display:flex;align-items:center;justify-content:center;box-shadow:var(--glow)}
 .brand .mark span{font-family:'Russo One';font-size:20px;filter:drop-shadow(0 0 8px var(--red))}
@@ -33,6 +33,10 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;ba
 .nav-cta{font-family:'Chakra Petch';font-weight:700;font-size:13px;letter-spacing:1px;padding:10px 20px;border-radius:10px;background:linear-gradient(135deg,#c40d14,#7a0508);color:#fff;box-shadow:0 0 0 1px #ff3b3b inset;transition:transform .15s}
 .nav-cta:hover{transform:translateY(-2px)}
 @media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
+/* top video banner */
+.top-banner{position:relative;z-index:2;width:100%;height:clamp(200px,36vw,480px);overflow:hidden;background:#070505;border-bottom:1px solid #3a0d0f;box-shadow:0 0 80px -20px rgba(230,18,26,.55)}
+.top-banner video{width:100%;height:100%;object-fit:cover;display:block}
+.top-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:35%;background:linear-gradient(180deg,transparent,rgba(8,7,10,.85));pointer-events:none}
 /* hero */
 .hero{padding:90px 0 60px;text-align:center;position:relative}
 .eyebrow{font-family:'JetBrains Mono';font-size:12px;letter-spacing:4px;color:var(--red-hot);text-transform:uppercase;margin-bottom:20px}
@@ -178,7 +182,6 @@ footer a{color:var(--red-hot)}
 <canvas id="embers"></canvas>
 
 <nav><div class="wrap nav-in">
-  <a class="brand" href="#top"><img src="drob-logo.png" alt="DROB TWEAKS" class="brand-logo"></a>
   <div class="nav-links">
     <a href="#products">Products</a>
     <a href="#bundles">Bundles</a>
@@ -187,6 +190,13 @@ footer a{color:var(--red-hot)}
     <a class="nav-cta" href="https://drobtweaks.sell.app" target="_blank">STORE</a>
   </div>
 </div></nav>
+
+<!-- BIG VIDEO BANNER -->
+<div class="top-banner">
+  <video autoplay muted loop playsinline poster="drobtweaks_hero_poster.jpg">
+    <source src="drobtweaks_hero.mp4" type="video/mp4">
+  </video>
+</div>
 
 <header class="hero"><div class="wrap">
   <div class="eyebrow">competitive PC optimization</div>
@@ -326,7 +336,6 @@ footer a{color:var(--red-hot)}
 </div></section>
 
 <footer><div class="wrap">
-  <div style="text-align:center;margin-bottom:14px"><img src="drob-logo.png" alt="DROB TWEAKS" style="height:42px;filter:drop-shadow(0 0 12px rgba(230,18,26,.4))"></div>
   <div>drobtweaks.com &nbsp;&middot;&nbsp; <a href="https://drobtweaks.sell.app" target="_blank">Store</a> &nbsp;&middot;&nbsp; <a href="https://discord.gg/cnYkBG5Duy" target="_blank">Discord</a></div>
   <p class="disc">Results vary per system — every PC is different. DROB tools remove what steals performance; they don't conjure FPS from nothing. All changes are reversible. Not affiliated with Microsoft, NVIDIA, AMD, Riot, or Epic Games.</p>
 </div></footer>
