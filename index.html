@@ -33,10 +33,12 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;ba
 .nav-cta{font-family:'Chakra Petch';font-weight:700;font-size:13px;letter-spacing:1px;padding:10px 20px;border-radius:10px;background:linear-gradient(135deg,#c40d14,#7a0508);color:#fff;box-shadow:0 0 0 1px #ff3b3b inset;transition:transform .15s}
 .nav-cta:hover{transform:translateY(-2px)}
 @media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
-/* top video banner */
-.top-banner{position:relative;z-index:2;width:100%;height:clamp(200px,36vw,480px);overflow:hidden;background:#070505;border-bottom:1px solid #3a0d0f;box-shadow:0 0 80px -20px rgba(230,18,26,.55)}
-.top-banner video{width:100%;height:100%;object-fit:cover;display:block}
-.top-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:35%;background:linear-gradient(180deg,transparent,rgba(8,7,10,.85));pointer-events:none}
+/* video banner (between hero and products) */
+.showcase{padding:6px 0 30px}
+.showcase-in{max-width:1400px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+.showcase-frame{position:relative;border-radius:20px;overflow:hidden;border:1px solid #3a0d0f;box-shadow:0 0 90px -24px rgba(230,18,26,.65);aspect-ratio:12/5;background:#070505}
+.showcase-frame video{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:700px){.showcase-in{padding:0 12px}.showcase-frame{aspect-ratio:16/9;border-radius:14px}}
 /* hero */
 .hero{padding:90px 0 60px;text-align:center;position:relative}
 .eyebrow{font-family:'JetBrains Mono';font-size:12px;letter-spacing:4px;color:var(--red-hot);text-transform:uppercase;margin-bottom:20px}
@@ -213,6 +215,44 @@ footer a{color:var(--red-hot)}
 .pop-no{margin-top:8px;background:none;border:0;color:var(--muted);font-family:'Chakra Petch';font-weight:600;font-size:13px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .pop-no:hover{color:#fff}
 .pop-fine{font-size:11px;color:#5a5a63;margin-top:14px;line-height:1.4}
+/* chat widget */
+.ch-fab{position:fixed;right:20px;bottom:20px;z-index:150;width:60px;height:60px;border-radius:50%;border:1px solid #ff3b3b;cursor:pointer;background:linear-gradient(135deg,#c40d14,#7a0508);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px rgba(230,18,26,.5);transition:transform .2s}
+.ch-fab:hover{transform:translateY(-3px) scale(1.05)}
+.ch-fab::before{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(230,18,26,.6);animation:chring 2.4s ease-out infinite;pointer-events:none}
+@keyframes chring{from{transform:scale(1);opacity:.8}to{transform:scale(1.55);opacity:0}}
+.ch-dot{position:absolute;top:1px;right:1px;width:15px;height:15px;border-radius:50%;background:#28e07a;border:2px solid #0c0a0e}
+.ch-tip{position:fixed;right:92px;bottom:32px;z-index:150;background:#fff;color:#111;font-family:'Chakra Petch';font-weight:700;font-size:13px;padding:10px 14px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.5);opacity:0;transform:translateX(8px);pointer-events:none;transition:opacity .3s,transform .3s}
+.ch-tip.show{opacity:1;transform:none}
+.ch-tip::after{content:"";position:absolute;right:-6px;top:50%;margin-top:-6px;border:6px solid transparent;border-right:0;border-left-color:#fff}
+.ch-panel{position:fixed;right:20px;bottom:92px;z-index:150;width:380px;max-width:calc(100vw - 24px);height:580px;max-height:calc(100vh - 120px);display:none;flex-direction:column;background:linear-gradient(160deg,#160a0d,#0c0a0e);border:1px solid #3a0d0f;border-radius:18px;box-shadow:0 20px 70px rgba(0,0,0,.6),0 0 60px -20px rgba(230,18,26,.6);overflow:hidden}
+.ch-panel.open{display:flex;animation:chin .3s cubic-bezier(.2,.75,.25,1)}
+@keyframes chin{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.ch-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(230,18,26,.2),transparent)}
+.ch-head b{font-family:'Russo One';letter-spacing:1px;font-size:15px;display:block}
+.ch-head span{font-family:'Chakra Petch';font-weight:600;font-size:12px;color:var(--muted)}
+.ch-ic{background:none;border:0;color:var(--muted);font-size:22px;width:32px;height:32px;border-radius:8px;cursor:pointer;transition:.2s}
+.ch-ic:hover{color:#fff;background:rgba(255,255,255,.08)}
+.ch-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:#3a0d0f transparent}
+.ch-m{white-space:pre-line;max-width:88%;padding:11px 14px;border-radius:14px;font-family:'Rajdhani';font-weight:600;font-size:15px;line-height:1.4;animation:chpop .25s ease}
+@keyframes chpop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ch-bot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px;color:#e6e6ec}
+.ch-usr{align-self:flex-end;background:linear-gradient(135deg,#c40d14,#8a0709);color:#fff;border-bottom-right-radius:4px}
+.ch-typing{display:flex;gap:5px;padding:14px}
+.ch-typing i{width:7px;height:7px;border-radius:50%;background:#8b8b96;animation:chdot 1s infinite}
+.ch-typing i:nth-child(2){animation-delay:.15s}.ch-typing i:nth-child(3){animation-delay:.3s}
+@keyframes chdot{0%,80%,100%{opacity:.3;transform:none}40%{opacity:1;transform:translateY(-4px)}}
+.ch-card{display:block;align-self:stretch;padding:14px;border-radius:14px;background:linear-gradient(160deg,#1a0709,var(--card2));border:1px solid #3a0d0f;transition:transform .2s,border-color .2s;animation:chpop .25s ease}
+.ch-card:hover{transform:translateY(-2px);border-color:var(--red)}
+.ch-top{display:flex;justify-content:space-between;align-items:center}
+.ch-top b{font-family:'Russo One';font-size:16px}
+.ch-price{font-family:'JetBrains Mono';color:var(--red-hot);font-size:17px}
+.ch-d{color:#b6b6be;font-weight:500;font-size:13.5px;line-height:1.4;margin:6px 0 10px}
+.ch-go{font-family:'Chakra Petch';font-weight:700;font-size:12px;letter-spacing:1px;color:#fff;background:linear-gradient(135deg,#c40d14,#7a0508);padding:9px;border-radius:9px;text-align:center}
+.ch-sub{font-family:'Chakra Petch';font-weight:600;font-size:12px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.ch-opts{display:flex;flex-wrap:wrap;gap:8px;animation:chpop .25s ease}
+.ch-btn{font-family:'Chakra Petch';font-weight:700;font-size:13px;padding:9px 14px;border-radius:20px;background:var(--card);border:1px solid #4a1a1e;color:#fff;cursor:pointer;transition:.2s;display:inline-block}
+.ch-btn:hover{background:var(--red);border-color:var(--red);transform:translateY(-1px)}
+@media(max-width:500px){.ch-panel{right:12px;left:12px;width:auto;bottom:86px}.ch-fab{right:14px;bottom:14px}.ch-tip{display:none}}
 </style>
 </head>
 <body>
@@ -227,13 +267,6 @@ footer a{color:var(--red-hot)}
     <a class="nav-cta" href="https://drobtweaks.sell.app" target="_blank">STORE</a>
   </div>
 </div></nav>
-
-<!-- BIG VIDEO BANNER -->
-<div class="top-banner">
-  <video autoplay muted loop playsinline poster="drobtweaks_hero_poster.jpg">
-    <source src="drobtweaks_hero.mp4" type="video/mp4">
-  </video>
-</div>
 
 <header class="hero"><div class="wrap">
   <div class="eyebrow">competitive PC optimization</div>
@@ -256,6 +289,15 @@ footer a{color:var(--red-hot)}
     <div class="hstat"><b>1-click</b><span>revert on all</span></div>
   </div>
 </div></header>
+
+<!-- VIDEO BANNER -->
+<section class="showcase"><div class="showcase-in">
+  <div class="showcase-frame">
+    <video autoplay muted loop playsinline poster="drobtweaks_hero_poster.jpg">
+      <source src="drobtweaks_hero.mp4" type="video/mp4">
+    </video>
+  </div>
+</div></section>
 
 <section id="products"><div class="wrap">
   <div class="sec-head"><div class="lbl">the arsenal</div><h2>Pick your tools</h2><p>Every app is safe, reversible, and built for real gains. Start with one or grab a bundle.</p></div>
@@ -377,6 +419,20 @@ footer a{color:var(--red-hot)}
   <p class="disc">Results vary per system — every PC is different. DROB tools remove what steals performance; they don't conjure FPS from nothing. All changes are reversible. Not affiliated with Microsoft, NVIDIA, AMD, Riot, or Epic Games.</p>
 </div></footer>
 
+<!-- CHAT WIDGET -->
+<div class="ch-tip" id="chTip">Need help picking a tool?</div>
+<button class="ch-fab" id="chFab" type="button" aria-label="Open chat" aria-expanded="false">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+  <span class="ch-dot" id="chDot"></span>
+</button>
+<div class="ch-panel" id="chPanel" role="dialog" aria-label="DROB assistant">
+  <div class="ch-head">
+    <div><b>DROB ASSISTANT</b><span>Find the right tool in 10 seconds</span></div>
+    <div><button class="ch-ic" id="chReset" type="button" aria-label="Start over" title="Start over">&#8635;</button><button class="ch-ic" id="chClose" type="button" aria-label="Close chat">&times;</button></div>
+  </div>
+  <div class="ch-body" id="chBody"></div>
+</div>
+
 <!-- 10% EMAIL POPUP -->
 <div class="pop-ov" id="popOv" role="dialog" aria-modal="true" aria-labelledby="popTitle">
   <div class="pop" id="popBox">
@@ -427,13 +483,13 @@ const navEl=document.querySelector('nav');addEventListener('scroll',()=>{navEl.c
 <script>
 /* 10% email popup: shows 5s after load, once per visitor */
 (function(){
-  var KEY='drob_pop_v1',ov=document.getElementById('popOv');
+  var KEY='drob_pop_v1',FALLBACK='DAW4T5',ov=document.getElementById('popOv');
   if(!ov)return;
   function get(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
   function put(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-  var st=get();
-  if(st.done)return;
-  if(st.closed&&Date.now()-st.closed<7*864e5)return;
+  var st=get(),auto=true;
+  if(st.done)auto=false;
+  if(st.closed&&Date.now()-st.closed<7*864e5)auto=false;
   var form=document.getElementById('popForm'),email=document.getElementById('popEmail'),
       hp=document.getElementById('popHp'),btn=document.getElementById('popBtn'),
       err=document.getElementById('popErr'),ticket=document.getElementById('popTicket'),
@@ -443,7 +499,8 @@ const navEl=document.querySelector('nav');addEventListener('scroll',()=>{navEl.c
     ov.classList.remove('show');document.body.style.overflow='';
     var s=get();if(!s.done){s.closed=Date.now();put(s);}
   }
-  setTimeout(open,5000); /* 5 sec */
+  if(auto)setTimeout(open,5000); /* 5 sec */
+  window.drobShowPopup=open;
   document.getElementById('popX').addEventListener('click',close);
   document.getElementById('popNo').addEventListener('click',close);
   ov.addEventListener('click',function(e){if(e.target===ov)close();});
@@ -472,10 +529,138 @@ const navEl=document.querySelector('nav');addEventListener('scroll',()=>{navEl.c
         }else{hint.textContent='Check your inbox (and spam) for your code.';}
       })
       .catch(function(){
-        btn.disabled=false;btn.textContent='SUBSCRIBE';
-        err.textContent='Something went wrong. Try again, or ask in our Discord.';
+        /* email service down: still give the code so the visitor is never stuck */
+        put({done:1});
+        email.disabled=true;btn.disabled=true;btn.textContent='\u2714 CODE UNLOCKED';
+        codeEl.textContent=FALLBACK;ticket.classList.add('open');
+        hint.textContent="Couldn't send the email right now, but here's your code. Tap it to copy.";
+        ticket.addEventListener('click',function(){copy(FALLBACK);});
       });
   });
+})();
+</script>
+<script>
+/* on-site chat: button flow that recommends tools (no AI, no cost) */
+(function(){
+  var fab=document.getElementById('chFab'),panel=document.getElementById('chPanel'),
+      body=document.getElementById('chBody'),dot=document.getElementById('chDot'),tip=document.getElementById('chTip');
+  if(!fab)return;
+  var STORE='https://drobtweaks.sell.app/product/',DISCORD='https://discord.gg/cnYkBG5Duy',CODE='DAW4T5',started=false,token=0;
+  var P={
+    ai:{n:'DROB AI',p:'$25',d:'Chat-based AI tweaker. Tell it what you want, it explains and applies it.',u:STORE+'drob-ai',
+        f:['Ask anything, get it applied or as a .bat','Valorant / Fortnite / CS2 / FiveM profiles','Free local AI (runs on your GPU)','Built-in aim trainer'],b:'Best for: people who want it done for them.'},
+    tool:{n:'DROB TOOL',p:'$15',d:'Clean driver installs, NVIDIA profiles, live ping optimizer, startup manager.',u:STORE+'drob-tool',
+        f:['Clean driver installs + NVIDIA profiles','Live Ping Optimizer with world map','Startup manager + cleanup'],b:'Best for: drivers, ping and startup cleanup.'},
+    zd:{n:'DROB ZD',p:'$20',d:'Live performance dashboard, per-game tuning and deep memory + cleanup tools.',u:STORE+'drob-zd',
+        f:['Live performance dashboard','Per-game GPU-tier detection','Memory + cleanup deep tools'],b:'Best for: per-game tuning and live stats.'},
+    kbm:{n:'DROB KBM',p:'$15',d:'Raw input, polling and accel-curve tuning, plus latency and reaction testers.',u:STORE+'drob-kbm',
+        f:['Raw input + polling + accel-curve','Built-in latency + reaction testers','One-click gaming profile'],b:'Best for: aim and input feel.'},
+    debloat:{n:'DROB DEBLOAT',p:'$5',d:'Kill bloat, telemetry and background noise. Full undo included.',u:STORE+'drob-debloat',
+        f:['Debloat + telemetry off','Process / service reducer','Full undo included'],b:'Best for: a lighter, quieter Windows.'},
+    reg:{n:'REGISTRY TWEAKS',p:'$10',d:'Hand-built registry pack to cut input lag and strip overhead. Fully reversible.',u:STORE+'drob-registry-tweaks',
+        f:['13-step organized pack (power, network, delay...)','30+ .reg files, double-click to apply','Restore point first + bonus batch files'],b:'Best for: hands-on tweakers who like double-click packs.'},
+    prime:{n:'PRIME BUNDLE',p:'$30',d:'TOOL + KBM + Debloat. The 3-tool starter.',u:STORE+'prime-bundle'},
+    elite:{n:'ELITE BUNDLE',p:'$50',d:'TOOL + ZD + AI. The performance stack, saves $10.',u:STORE+'elite-bundle'},
+    full:{n:'DROB TWEAKS',p:'$80',d:'Every product plus priority support. The full stack.',u:STORE+'drob-tweaks'}
+  };
+  var GOALS=[['Less input delay','delay'],['More FPS','fps'],['Stutters / low 1% lows','lows'],['Lower ping','ping'],['Aim, mouse & keyboard','aim'],['Tweaks for my game','game']];
+  var MORE=[['Browse all tools','browse'],['Shop by budget','budget'],['Compare tools','compare'],['Bundles & deals','bundle'],['Get 10% off','code'],['FAQ','faq'],['Talk to a human','human']];
+  var BACK=[['Start over','start']];
+  var END=[['See bundles','bundle'],['Start over','start']];
+  var FLOW={
+    start:["Hey! I'm the DROB assistant. I can find the right tool for your PC, compare products, or answer questions. What do you want to fix?",['opts',GOALS,true],['sub','Or explore'],['opts',MORE]],
+    delay:["Input delay comes from your mouse, keyboard and system latency. These two hit it hardest:",['card','kbm'],['card','zd'],['opts',[['Mouse & keyboard tuning','aim'],['See bundles','bundle'],['Start over','start']]]],
+    fps:["For more FPS, start by stripping what steals performance, then tune the system:",['card','debloat'],['card','reg'],['card','tool'],'Results vary per system. These remove what steals performance; they do not create FPS from nothing.',['opts',END]],
+    lows:["Stutters and weak 1% lows usually come from background load and memory. These help most:",['card','zd'],['card','debloat'],['opts',END]],
+    ping:["Ping and packet loss are network problems. DROB TOOL has a live ping optimizer with a world map, and the Registry pack includes network tweaks:",['card','tool'],['card','reg'],['opts',END]],
+    aim:["If aim is your edge, DROB KBM tunes raw input, polling and the accel curve, and has latency and reaction testers built in:",['card','kbm'],"DROB AI also comes with an aim trainer to test the result:",['card','ai'],['opts',END]],
+    game:["Which game do you play?",['opts',[['Valorant','g_val'],['Fortnite','g_fn'],['CS2','g_cs'],['Apex / Warzone / R6','g_apex'],['FiveM','g_fivem'],['Another game','g_other'],['Start over','start']]]],
+    g_val:["For Valorant: DROB ZD tunes settings per game by GPU tier, and DROB AI has a Valorant profile.",['card','zd'],['card','ai'],['opts',[['Another game','game'],['Start over','start']]]],
+    g_fn:["For Fortnite: DROB ZD tunes settings per game by GPU tier, and DROB AI has a Fortnite profile.",['card','zd'],['card','ai'],['opts',[['Another game','game'],['Start over','start']]]],
+    g_cs:["For CS2: DROB ZD tunes settings per game by GPU tier, and DROB AI has a CS2 profile.",['card','zd'],['card','ai'],['opts',[['Another game','game'],['Start over','start']]]],
+    g_apex:["DROB ZD has per-game settings for Apex, Warzone and R6, tuned to your GPU tier. Debloat cuts background load on top:",['card','zd'],['card','debloat'],['opts',[['Another game','game'],['Start over','start']]]],
+    g_fivem:["DROB AI has a FiveM profile, and Debloat cuts background load:",['card','ai'],['card','debloat'],['opts',[['Another game','game'],['Start over','start']]]],
+    g_other:["For any other game, start with the basics: strip background junk and clean up your system.",['card','debloat'],['card','tool'],['opts',[['Another game','game'],['Start over','start']]]],
+    browse:["Pick a tool to see what's inside:",['opts',[['DROB AI ($25)','p_ai'],['DROB ZD ($20)','p_zd'],['DROB TOOL ($15)','p_tool'],['DROB KBM ($15)','p_kbm'],['Registry Tweaks ($10)','p_reg'],['Debloat ($5)','p_debloat'],['Start over','start']]]],
+    budget:["What's your budget?",['opts',[['Up to $10','b1'],['Around $15','b2'],['Up to $25','b3'],['Best value','bundle'],['Start over','start']]]],
+    b1:["Best picks up to $10:",['card','debloat'],['card','reg'],['opts',[['Other budgets','budget'],['Start over','start']]]],
+    b2:["Best picks around $15:",['card','tool'],['card','kbm'],['opts',[['Other budgets','budget'],['Start over','start']]]],
+    b3:["Best picks up to $25:",['card','zd'],['card','ai'],['opts',[['Other budgets','budget'],['Start over','start']]]],
+    compare:["Quick comparison:\n\u2022 DROB AI ($25): chat-based, applies tweaks for you\n\u2022 DROB ZD ($20): live stats + per-game tuning\n\u2022 DROB TOOL ($15): drivers, ping, startup cleanup\n\u2022 DROB KBM ($15): mouse & keyboard tuning\n\u2022 Registry Tweaks ($10): manual tweak pack\n\u2022 Debloat ($5): strips junk from Windows",['opts',[['Help me pick','pick'],['Browse tools','browse'],['Start over','start']]]],
+    pick:["Easiest way: let DROB AI do it. Tell it what you want and it explains and applies the tweaks for you.",['card','ai'],"Want everything in one go? The full pack has every product plus priority support.",['card','full'],['opts',[['See other bundles','bundle'],['Browse tools','browse'],['Start over','start']]]],
+    bundle:["Bundles cost less than buying separately. Add your 10% code at checkout too:",['card','prime'],['card','elite'],['card','full'],['opts',[['Get 10% off','code'],['Start over','start']]]],
+    code:[['do',function(my){
+      var st=popState();
+      if(st.done){typing(600,function(){say("You already unlocked your 10% code: "+CODE+". Enter it at checkout.");opts([['Browse tools','browse'],['Start over','start']]);},my);}
+      else{typing(600,function(){say("Drop your email and I'll unlock your 10% code.");setTimeout(function(){close();if(window.drobShowPopup)window.drobShowPopup();},900);},my);}
+    }]],
+    faq:["What do you want to know?",['opts',[['Is it safe?','safe'],['Can I undo it?','undo'],['Will I really get more FPS?','results'],['Antivirus flagged it','av'],['Start over','start']]]],
+    safe:["Yes. Every tweak is backed up and can be reverted in one click. Results vary per system, since every PC is different.",['opts',[['More questions','faq'],['Start over','start']]]],
+    undo:["Yes. Each app has a revert option, Debloat includes a full undo, and Registry Tweaks makes a restore point first.",['opts',[['More questions','faq'],['Start over','start']]]],
+    results:["It depends on your PC. The tools remove what steals performance; they do not create FPS from nothing. Many buyers notice smoother 1% lows and lower input delay first.",['opts',[['Help me pick','pick'],['More questions','faq'],['Start over','start']]]],
+    av:["Tweak tools change system settings, so some antivirus programs can flag them as a false positive. Don't turn your antivirus off. Add the DROB folder to its exclusions instead, and the Discord team can walk you through it.",['opts',[['Open the Discord','link',DISCORD],['More questions','faq'],['Start over','start']]]],
+    human:["Join the Discord and open a ticket. Support answers there.",['opts',[['Open the Discord','link',DISCORD],['Start over','start']]]]
+  };
+  Object.keys(P).forEach(function(k){
+    var c=P[k];if(!c.f)return;
+    FLOW['p_'+k]=[c.n+' \u2014 '+c.p+'\n'+c.f.map(function(x){return '\u2022 '+x;}).join('\n')+'\n'+c.b,['card',k],['opts',[['Back to all tools','browse'],['Start over','start']]]];
+  });
+  function popState(){try{return JSON.parse(localStorage.getItem('drob_pop_v1')||'{}');}catch(e){return {};}}
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}
+  function down(){body.scrollTop=body.scrollHeight;}
+  function say(text){body.appendChild(el('div','ch-m ch-bot',text));down();}
+  function me(text){body.appendChild(el('div','ch-m ch-usr',text));down();}
+  function sub(text){body.appendChild(el('div','ch-sub',text));down();}
+  function card(k){
+    var c=P[k],a=el('a','ch-card'),top=el('div','ch-top');
+    a.href=c.u;a.target='_blank';a.rel='noopener';
+    top.appendChild(el('b',null,c.n));top.appendChild(el('span','ch-price',c.p));
+    a.appendChild(top);a.appendChild(el('div','ch-d',c.d));a.appendChild(el('div','ch-go','GET '+c.n+' \u2192'));
+    body.appendChild(a);down();
+  }
+  function opts(list){
+    var w=el('div','ch-opts');
+    list.forEach(function(x){
+      var b;
+      if(x[1]==='link'){b=el('a','ch-btn',x[0]);b.href=x[2];b.target='_blank';b.rel='noopener';}
+      else{b=el('button','ch-btn',x[0]);b.type='button';b.addEventListener('click',function(){
+        [].slice.call(body.querySelectorAll('.ch-opts,.ch-sub')).forEach(function(n){n.remove();});
+        me(x[0]);play(x[1]);
+      });}
+      w.appendChild(b);
+    });
+    body.appendChild(w);down();
+  }
+  function typing(ms,cb,my){
+    var t=el('div','ch-m ch-bot ch-typing');t.appendChild(el('i'));t.appendChild(el('i'));t.appendChild(el('i'));
+    body.appendChild(t);down();
+    setTimeout(function(){t.remove();if(my===token)cb();},ms);
+  }
+  function play(key){
+    var items=FLOW[key].slice(),my=++token;
+    (function next(){
+      if(!items.length||my!==token)return;
+      var it=items.shift();
+      if(typeof it==='string'){typing(600,function(){say(it);next();},my);}
+      else if(it[0]==='card'){typing(350,function(){card(it[1]);next();},my);}
+      else if(it[0]==='sub'){sub(it[1]);next();}
+      else if(it[0]==='do'){it[1](my);}
+      else{opts(it[1]);if(it[2])next();}
+    })();
+  }
+  function open(){
+    panel.classList.add('open');fab.setAttribute('aria-expanded','true');dot.style.display='none';tip.classList.remove('show');
+    if(!started){started=true;play('start');}
+  }
+  function close(){panel.classList.remove('open');fab.setAttribute('aria-expanded','false');}
+  fab.addEventListener('click',function(){panel.classList.contains('open')?close():open();});
+  document.getElementById('chClose').addEventListener('click',close);
+  document.getElementById('chReset').addEventListener('click',function(){body.innerHTML='';play('start');});
+  addEventListener('keydown',function(e){
+    var pop=document.getElementById('popOv');
+    if(e.key==='Escape'&&panel.classList.contains('open')&&!(pop&&pop.classList.contains('show')))close();
+  });
+  setTimeout(function(){if(!panel.classList.contains('open')){tip.classList.add('show');setTimeout(function(){tip.classList.remove('show');},7000);}},15000);
 })();
 </script>
 </body>
