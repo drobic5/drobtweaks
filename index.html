@@ -49,6 +49,7 @@ nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;ba
 .btn-red{background:linear-gradient(135deg,#c40d14,#7a0508);color:#fff;box-shadow:0 0 0 1px #ff3b3b inset,0 10px 40px rgba(230,18,26,.35)}
 .btn-red:hover{transform:translateY(-3px)}
 .btn-ghost{background:var(--card);border-color:var(--line);color:var(--text)}
+.btn-try{border-color:#5a1418;box-shadow:0 0 26px -10px var(--red)}
 .btn-ghost:hover{border-color:#3a3a44;transform:translateY(-3px)}
 .hero-stats{display:flex;gap:34px;justify-content:center;margin-top:52px;flex-wrap:wrap}
 .hstat{text-align:center}
@@ -274,6 +275,7 @@ footer a{color:var(--red-hot)}
   <p>Real tools + a real AI tweaker for higher FPS, lower input lag and better 1% lows. Safe, reversible, and measurable — no snake oil.</p>
   <div class="cta-row">
     <a class="btn btn-red" href="#products">SEE THE TOOLS</a>
+    <a class="btn btn-ghost btn-try" href="DROB-Trial.zip" download>TRY FOR FREE</a>
     <a class="btn btn-ghost" href="https://discord.gg/cnYkBG5Duy" target="_blank">JOIN THE DISCORD</a>
   </div>
   <div class="chips-row">
@@ -564,7 +566,7 @@ const navEl=document.querySelector('nav');addEventListener('scroll',()=>{navEl.c
     full:{n:'DROB TWEAKS',p:'$80',d:'Every product plus priority support. The full stack.',u:STORE+'drob-tweaks'}
   };
   var GOALS=[['Less input delay','delay'],['More FPS','fps'],['Stutters / low 1% lows','lows'],['Lower ping','ping'],['Aim, mouse & keyboard','aim'],['Tweaks for my game','game']];
-  var MORE=[['Browse all tools','browse'],['Shop by budget','budget'],['Compare tools','compare'],['Bundles & deals','bundle'],['Get 10% off','code'],['FAQ','faq'],['Talk to a human','human']];
+  var MORE=[['Free trial','trial'],['Browse all tools','browse'],['Shop by budget','budget'],['Compare tools','compare'],['Bundles & deals','bundle'],['Get 10% off','code'],['FAQ','faq'],['Talk to a human','human']];
   var BACK=[['Start over','start']];
   var END=[['See bundles','bundle'],['Start over','start']];
   var FLOW={
@@ -599,6 +601,7 @@ const navEl=document.querySelector('nav');addEventListener('scroll',()=>{navEl.c
     undo:["Yes. Each app has a revert option, Debloat includes a full undo, and Registry Tweaks makes a restore point first.",['opts',[['More questions','faq'],['Start over','start']]]],
     results:["It depends on your PC. The tools remove what steals performance; they do not create FPS from nothing. Many buyers notice smoother 1% lows and lower input delay first.",['opts',[['Help me pick','pick'],['More questions','faq'],['Start over','start']]]],
     av:["Tweak tools change system settings, so some antivirus programs can flag them as a false positive. Don't turn your antivirus off. Add the DROB folder to its exclusions instead, and the Discord team can walk you through it.",['opts',[['Open the Discord','link',DISCORD],['More questions','faq'],['Start over','start']]]],
+    trial:["Try it free. It's a small Windows tool that scans your PC and applies 8 safe, undoable tweaks (mouse, keyboard, fullscreen and more). No admin needed, nothing to install. Download the zip, extract it, then double-click DROB Trial.bat.",['opts',[['Download free trial','link','DROB-Trial.zip'],['Compare with full version','compare'],['Start over','start']]]],
     human:["Join the Discord and open a ticket. Support answers there.",['opts',[['Open the Discord','link',DISCORD],['Start over','start']]]]
   };
   Object.keys(P).forEach(function(k){
@@ -622,7 +625,7 @@ const navEl=document.querySelector('nav');addEventListener('scroll',()=>{navEl.c
     var w=el('div','ch-opts');
     list.forEach(function(x){
       var b;
-      if(x[1]==='link'){b=el('a','ch-btn',x[0]);b.href=x[2];b.target='_blank';b.rel='noopener';}
+      if(x[1]==='link'){b=el('a','ch-btn',x[0]);b.href=x[2];if(/\.zip$/.test(x[2])){b.setAttribute('download','');}else{b.target='_blank';b.rel='noopener';}}
       else{b=el('button','ch-btn',x[0]);b.type='button';b.addEventListener('click',function(){
         [].slice.call(body.querySelectorAll('.ch-opts,.ch-sub')).forEach(function(n){n.remove();});
         me(x[0]);play(x[1]);
